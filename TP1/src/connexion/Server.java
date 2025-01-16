@@ -30,7 +30,6 @@ public class Server {
 		        System.out.println("New client "+ " "+ socket.getInetAddress()+"  connected");
 		        OutputStream output= socket.getOutputStream();
 		        
-		        output.write("username:\r\n".getBytes());
                 Scanner scanner = new Scanner(input);
                 String username = scanner.nextLine();
 		        output.write("2121 Service ready\r\n".getBytes());
