@@ -41,30 +41,56 @@ public class Server {
 		     
                 String password = scanner.nextLine();
                 System.out.println(password);
+                boolean isRunning= true;
                 
+               
                 if (authenticate(username, password)) {
                     
                 	output.write("230 Auth réussie\r\n".getBytes());
                     // Utiliser le nom d'utilisateur dans le message
-                   
-                    String quit = scanner.nextLine();
-                    
-                    /* quitter la connexion */
-                    if (quit.equals("quit")) {
-                                output.write("221 Service closing control connection.\r\n".getBytes());
-                                socket.close();
-                    }
+                	 while(isRunning) {
+                		 
+                		if (scanner.hasNextLine()) {
+                			
+		                    String command = scanner.nextLine();
+		                    System.out.println(command);
+		                    /* quitter la connexion */
+		                    if (command.equals("SYST")) {
+		                                output.write("215 windows system type.\r\n".getBytes());
+		                               
+		                    }
+		                    
+		                    else if(command.equals("FEAT")){
+		                    	output.write("211-Features:\r\n".getBytes());
+		                        output.write(" EPRT\r\n".getBytes());
+		                        output.write(" EPSV\r\n".getBytes());
+		                        output.write(" MDTM\r\n".getBytes());
+		                        output.write(" SIZE\r\n".getBytes());
+		                        output.write("211 End\r\n".getBytes());
+		                    }
+		                    else if (command.equalsIgnoreCase("QUIT")) {
+		                        output.write("221 Service closing control connection\r\n".getBytes());
+		                        isRunning = false;
+		                        }
+                		}
+                	 }	
                   
                 } else {
                 	output.write("530 Authentication failed\r\n".getBytes());
                    
                 }
+                socket.close();
+		     }
+		      
+                
                 
 		   	      
 
 		       
 
-		    }}
+		     
+          }
+	 
 
 		    catch (IOException e) {
 						e.getMessage();
