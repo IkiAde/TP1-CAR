@@ -70,6 +70,11 @@ public class Server {
 		                    }
 		                    
 		                    else if(command.equals("FEAT")){
+		                    	output.write("211-Features:\r\n".getBytes());
+		                        output.write(" EPRT\r\n".getBytes());
+		                        output.write(" EPSV\r\n".getBytes());
+		                        output.write(" MDTM\r\n".getBytes());
+		                        output.write(" SIZE\r\n".getBytes());
 		                        output.write("211 End\r\n".getBytes());
 		                    }
 		                    else if (command.equalsIgnoreCase("QUIT")) {
@@ -96,8 +101,8 @@ public class Server {
 		                        }
 		                    }
 		                    
-		                    else if (command.startsWith("RETR ") || command.startsWith("GET ")) {
-		                    	dataserver = new ServerSocket(0);
+		                    else if (command.startsWith("RETR") || command.startsWith("GET")) {
+		                    	
 		                        String fileName = command.substring(5).trim();
 		                        File file = new File(currentDirectory, fileName);
 		                        if (!file.exists()) {
