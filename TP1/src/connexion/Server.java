@@ -36,7 +36,7 @@ public class Server {
 		        OutputStream output= socket.getOutputStream();
 		        
                 Scanner scanner = new Scanner(input);
-                //entrer le username
+                
                 
                 output.write("220 Bienvenue\r\n".getBytes());
                 String username = scanner.nextLine();
@@ -100,6 +100,10 @@ public class Server {
 		                            output.write("425 Can't open data connection\r\n".getBytes());
 		                        }
 		                    }
+		                    else if (command.startsWith("MDTM ")) {
+		                        output.write("213 \r\n".getBytes()); 
+		                    }
+
 		                    
 		                    else if (command.startsWith("RETR") || command.startsWith("GET")) {
 		                    	
@@ -127,15 +131,24 @@ public class Server {
 		                            }
 		                            dataOut.flush();
 		                            output.write("226 Transfer complete\r\n".getBytes());
+		                 
 		                        } catch (IOException e) {
 		                            output.write("426 Connection closed; transfer aborted\r\n".getBytes());
 		                        } 
-		                            dataserver.close();
-		                            dataserver = null;
+		                        finally {
+                                    if (dataserver != null && !dataserver.isClosed()) {
+                                        dataserver.close();
+                                        
+                                    }
+                                    dataserver.close();
+                                    dataserver = null;
+                                    
+                                }
 		                        
 		                    }
                 		}
                 	 }	
+                	 
                   
                 } 
                 
