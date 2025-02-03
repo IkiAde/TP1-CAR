@@ -30,7 +30,8 @@ Si les identifiants sont valides, l'utilisateur peut envoyer des commandes FTP.
 
 # Instructions d'utilisation
 
-Compilation et exécution
+**Compilation et exécution:**
+
 Se placer dans src/connexion puis:
 
 ```
