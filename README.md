@@ -2,11 +2,11 @@
 Dépôt pour le Tp1 de Conception d'applications réparties
 Serveur FTP en Java
 
-#Description du projet
+# Description du projet
 
 Ce projet est une implémentation d'un serveur FTP en Java, permettant aux clients de se connecter, de s'authentifier et d'effectuer certaines opérations de base telles que la récupération de fichiers.
 
-#Fonctionnalités implémentées
+# Fonctionnalités implémentées
 
 **Connexion et authentification et Récupération de fichier**
 
@@ -28,7 +28,7 @@ Si les identifiants sont valides, l'utilisateur peut envoyer des commandes FTP.
 
 
 
-#Instructions d'utilisation
+# Instructions d'utilisation
 
 Compilation et exécution
 Se placer dans src/connexion puis:
@@ -43,6 +43,6 @@ Connexion via FTP
 ftp localhost 2121
 ```
 
-#Exemple démo:
+# Exemple démo:
 
 ![Aperçu du serveur FTP](TP1/images/Server.png)
